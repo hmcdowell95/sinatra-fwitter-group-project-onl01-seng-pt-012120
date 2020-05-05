@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   end
   
   def self.find_by_slug(slug)
-    User.
+    User.all.find
 end
