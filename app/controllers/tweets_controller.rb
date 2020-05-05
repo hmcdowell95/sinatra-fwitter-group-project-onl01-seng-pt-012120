@@ -39,7 +39,7 @@ get '/tweets' do
   get '/tweets/:id/edit' do
     if session[:user_id]
       @tweet = Tweet.find(params[:id])
-      if User.find(session[:user_id]) == @tweet.user
+      if @tweet && User.find(session[:user_id]) == @tweet.user
         erb :"/tweets/edit"
       end
     else
