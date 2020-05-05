@@ -37,9 +37,9 @@ get '/tweets' do
   end
   
   get '/tweets/:id/edit' do
-    binding.pry
     if session[:user_id]
       @tweet = Tweet.find(params[:id])
+      binding.pry
       if @tweet && User.find(session[:user_id]) == @tweet.user
         erb :"/tweets/edit"
       end
