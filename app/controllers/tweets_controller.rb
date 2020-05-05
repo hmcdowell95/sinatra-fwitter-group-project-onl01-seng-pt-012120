@@ -37,6 +37,7 @@ get '/tweets' do
   end
   
   get '/tweets/:id/edit' do
+    binding.pry
     if session[:user_id]
       @tweet = Tweet.find(params[:id])
       if @tweet && User.find(session[:user_id]) == @tweet.user
@@ -48,7 +49,6 @@ get '/tweets' do
   end
   
   patch '/tweets/:id' do 
-    binding.pry
     if params[:content] != ""
       @tweet = Tweet.find(params[:id])
       @tweet.update(content: params[:content])
