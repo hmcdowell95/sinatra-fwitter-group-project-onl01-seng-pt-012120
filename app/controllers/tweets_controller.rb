@@ -12,14 +12,18 @@ get '/tweets' do
   get '/tweets/new' do
     if session[:user_id]
       erb :"/tweets/new"
+    else 
+      redirect "/login"
     end
   end
   
   post '/tweets' do
-    @tweet = Tweet.new(content: params[:content])
-    @tweet.user = User.find(session[:user_id])
-    @tweet.save
-    redirect "/tweets/#{@tweet.id}"
+    if params[:content] != ""
+      @tweet = Tweet.new(content: params[:content])
+      @tweet.user = User.find(session[:user_id])
+      @tweet.save
+      redirect "/tweets/#{@tweet.id}"
+    end
   end
   
   get '/tweets/:id' do
