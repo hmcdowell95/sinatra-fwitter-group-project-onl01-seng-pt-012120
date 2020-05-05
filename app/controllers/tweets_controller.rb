@@ -48,6 +48,7 @@ get '/tweets' do
   end
   
   patch '/tweets/:id' do 
+    binding.pry
     if params[:content] != ""
       @tweet = Tweet.find(params[:id])
       @tweet.update(content: params[:content])
