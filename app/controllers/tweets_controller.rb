@@ -46,9 +46,10 @@ get '/tweets' do
   end
   
   patch '/tweets/:id' do 
+    if params[:content] != ""
     @tweet = Tweet.find(params[:id])
     @tweet.update(content: params[:content])
-    erb :"/tweets/show"
+    redirect "/tweets/#{@tweet.id}"
   end
       
   delete '/tweets/:id/delete' do 
