@@ -58,8 +58,10 @@ get '/tweets' do
   end
       
   delete '/tweets/:id/delete' do 
-    Tweet.destroy(params[:id])
-    erb :"/tweets/index"
+    if session[:user_id] == Tweet.find(params[:id]).user_id
+      Tweet.destroy(params[:id])
+    end
+    redirect "/tweets"
   end
 
 
