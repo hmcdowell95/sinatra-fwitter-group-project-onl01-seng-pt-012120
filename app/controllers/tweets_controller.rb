@@ -9,6 +9,12 @@ get '/tweets' do
     end
   end
   
+  get '/tweets/new' do
+    if session[:user_id]
+      erb :"/tweets/new"
+    end
+  end
+  
   post '/tweets' do
     @tweet = Tweet.new(content: params[:content])
     @tweet.user = User.find(session[:user_id])
