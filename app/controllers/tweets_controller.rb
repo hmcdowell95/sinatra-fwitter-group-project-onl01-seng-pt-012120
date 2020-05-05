@@ -48,8 +48,8 @@ get '/tweets' do
   end
   
   patch '/tweets/:id' do 
+    
     if params[:content] != ""
-      @tweet = Tweet.find(params[:id])
       @tweet.update(content: params[:content])
       redirect "/tweets/#{@tweet.id}"
     else
