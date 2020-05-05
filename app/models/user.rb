@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
     username.downcase.gsub(" ", "-")
   end
   
+  def 
 end
