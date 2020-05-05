@@ -1,7 +1,6 @@
 class TweetsController < ApplicationController
 get '/tweets' do 
     @tweets = Tweet.all
-    #binding.pry
     if session[:user_id]
       erb :"/tweets/index"
     else 
@@ -23,6 +22,8 @@ get '/tweets' do
       @tweet.user = User.find(session[:user_id])
       @tweet.save
       redirect "/tweets/#{@tweet.id}"
+    else 
+      redirect "/tweets/new"
     end
   end
   
